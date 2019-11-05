@@ -1,9 +1,6 @@
 const User = require('./user')
 const Clothes = require('./clothes')
-const Transactions = require('./transactions.js')
-
-Transactions.hasOne(User)
-Transactions.hasMany(Clothes)
+const Transactions = require('./transactions')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -20,5 +17,6 @@ Transactions.hasMany(Clothes)
  */
 module.exports = {
   User,
-  Clothes
+  Clothes,
+  Transactions
 }
