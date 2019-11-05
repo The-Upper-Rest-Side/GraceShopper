@@ -1,6 +1,6 @@
 const {expect} = require('chai')
-const db = require('../index')
-const Transactions = require('./transactions')
+const db = require('../server/db/index')
+const Transactions = require('../server/db/models/transactions')
 
 describe('Transactions model', () => {
   describe('Validations', () => {
