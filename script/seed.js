@@ -2,6 +2,7 @@
 
 const db = require('../server/db')
 const {User} = require('../server/db/models')
+const {Clothes} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,7 +13,25 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
+  const clothes = await Promise.all([
+    Clothes.create({
+      name: 'Crop Top',
+      category: 'Shirts',
+      price: 20,
+      size: 4,
+      inventory: 1000
+    }),
+    Clothes.create({
+      name: 'Mom Jeans',
+      category: 'Pants',
+      price: 50,
+      size: 2,
+      inventory: 1000
+    })
+  ])
+
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${clothes.length} clothes`)
   console.log(`seeded successfully`)
 }
 
