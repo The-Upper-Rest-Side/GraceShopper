@@ -22,6 +22,9 @@ describe('User model', () => {
           password: 'bones'
         })
       })
+      it('defaults user admin priviledge to false', () => {
+        expect(cody.isAdmin).to.be.equal(false)
+      })
 
       it('returns true if the password is correct', () => {
         expect(cody.correctPassword('bones')).to.be.equal(true)
