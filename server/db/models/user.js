@@ -11,23 +11,18 @@ const User = db.define('user', {
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
-    validate: {
-      isIn: [[true, false]]
-    }
+    allowNull: false
   },
   fName: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   lName: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   address: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   password: {
