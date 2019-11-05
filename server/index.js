@@ -67,6 +67,8 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
+  app.use(require('./admin.middleware'))
+
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
