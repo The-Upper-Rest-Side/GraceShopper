@@ -1,9 +1,9 @@
 const {expect} = require('chai')
 const request = require('supertest')
-const app = require('../index')
+const app = require('../server/index')
 const agent = request.agent(app)
-const db = require('../db/db')
-const Clothes = require('../db/models/clothes')
+const db = require('../server/db/db')
+const Clothes = require('../server/db/models/clothes')
 
 describe('Clothes routes', () => {
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe('Clothes routes', () => {
 
   beforeEach(async () => {
     const createdClothes = await Clothes.bulkCreate(clothesData)
-    storedClothes = createdClothes.map(campus => campus.dataValues)
+    storedClothes = createdClothes.map(clothes => clothes.dataValues)
   })
 
   describe('GET `/api/clothes`', () => {
