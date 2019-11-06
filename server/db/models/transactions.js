@@ -12,11 +12,6 @@ const Transactions = db.define('transactions', {
   },
   amount: {
     type: Sequelize.DECIMAL(10, 2)
-  },
-  isAdmin: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
   }
 })
 

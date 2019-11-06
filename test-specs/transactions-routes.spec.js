@@ -26,21 +26,19 @@ describe('Transactions Routes:', () => {
     it('responds with all transaction in DB', async () => {
       await Transactions.create({
         date: new Date('August 19, 1975 23:15:30'),
-        amount: 1.0,
-        isAdmin: false
+        amount: 1.0
       })
 
       await Transactions.create({
         date: new Date('August 18, 1975 23:15:30'),
-        amount: 2.0,
-        isAdmin: false
+        amount: 2.0
       })
 
       const res = await agent.get('/api/transactions').expect(200)
 
       // res.body is the JSON return object
       expect(res.body).to.be.an.instanceOf(Array)
-      expect(res.body[0].isAdmin).to.equal(false)
+      expect(res.body[0].amount.toString()).to.equal('1.00')
       expect(res.body.length).to.equal(2)
     })
   })
@@ -50,14 +48,13 @@ describe('Transactions Routes:', () => {
         .post('/api/transactions')
         .send({
           date: new Date('August 18, 1975 23:15:30'),
-          amount: 2.0,
-          isAdmin: false
+          amount: 2.0
         })
         .expect(200)
 
       expect(res.body.message).to.equal('Created Successfully')
       expect(res.body.newTransaction.id).to.not.be.an('undefined')
-      expect(res.body.newTransaction.isAdmin).to.equal(false)
+      expect(res.body.newTransaction.amount.toString()).to.equal('2.00')
     })
   })
 })
