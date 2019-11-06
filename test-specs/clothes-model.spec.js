@@ -1,46 +1,48 @@
 const {expect} = require('chai')
-const db = require('../server/db/index')
+const db = require('../server/db/db')
 const Clothes = require('../server/db/models/clothes')
 
-describe('The `Clothes` model', () => {
-  before(() => {
+describe('Clothes routes', () => {
+  beforeEach(() => {
     return db.sync({force: true})
   })
-
-  let clothingItem
-  beforeEach(() => {
-    clothingItem = Clothes.build({
+  let storedClothes
+  const clothesData = [
+    {
       name: 'Shimmery Blouse',
-      cateogry: 'Shirts',
-      price: 30,
+      category: 'Shirts',
+      price: 30.0,
       size: 4,
       inventory: 4000
-    })
-  })
-
-  afterEach(() => {
-    return Promise.all([
-      Clothes.truncate({cascade: true}),
-      Clothes.truncate({cascade: true})
-    ])
+    },
+    {
+      name: 'Baby Doll Top',
+      category: 'Shirts',
+      price: 30.0,
+      size: 10,
+      inventory: 5
+    }
+  ]
+  beforeEach(async () => {
+    const createdClothes = await Clothes.bulkCreate(clothesData)
+    storedClothes = createdClothes.map(clothes => clothes.dataValues)
   })
 
   describe('attributes definition', () => {
-    it('includes `title` and `content` fields', async () => {
-      const savedClothingItem = await clothingItem.save()
-      expect(savedClothingItem.name).to.equal('Shimmery Blouse')
-      expect(savedClothingItem.category).to.equal('Shirts')
-      expect(savedClothingItem.price.to.equal(30))
-      expect(savedClothingItem.size).to.equal(4)
-      expect(savedClothingItem.inventory.to.equal(4000))
+    it('includes `title` and `content` fields', () => {
+      expect(storedClothes[0].name).to.equal('Shimmery Blouse')
+      expect(storedClothes[0].category).to.equal('Shirts')
+      expect(storedClothes[0].price).to.equal(30)
+      expect(storedClothes[0].size).to.equal(4)
+      expect(storedClothes[0].inventory).to.equal(4000)
     })
 
     it('requires `name`', async () => {
-      clothingItem.name = null
+      storedClothes[0].name = null
 
       let result, error
       try {
-        result = await clothingItem.validate()
+        result = await storedClothes[0].validate()
       } catch (err) {
         error = err
       }
