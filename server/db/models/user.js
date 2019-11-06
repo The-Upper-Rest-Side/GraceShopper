@@ -15,14 +15,17 @@ const User = db.define('user', {
   },
   fName: {
     type: Sequelize.STRING,
+    default: 'newUserFirstName',
     allowNull: false
   },
   lName: {
     type: Sequelize.STRING,
+    default: 'newUserLastName',
     allowNull: false
   },
   address: {
     type: Sequelize.STRING,
+    default: 'newUserAddress',
     allowNull: false
   },
   password: {
