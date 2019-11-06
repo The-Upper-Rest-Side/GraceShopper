@@ -2,6 +2,8 @@ const User = require('./user')
 const Clothes = require('./clothes')
 const Transactions = require('./transactions')
 
+User.hasMany(Transactions)
+
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
