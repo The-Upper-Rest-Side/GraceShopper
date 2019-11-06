@@ -31,7 +31,7 @@ describe('Clothes routes', () => {
 
   beforeEach(async () => {
     const createdClothes = await Clothes.bulkCreate(clothesData)
-    storedClothes = createdClothes.map(campus => campus.dataValues)
+    storedClothes = createdClothes.map(clothes => clothes.dataValues)
   })
 
   describe('GET `/api/clothes`', () => {
