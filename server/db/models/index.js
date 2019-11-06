@@ -3,7 +3,6 @@ const Clothes = require('./clothes')
 const Transactions = require('./transactions')
 
 User.hasMany(Transactions)
-Transactions.hasMany(Clothes)
 
 /**
  * If we had any associations to make, this would be a great place to put them!
