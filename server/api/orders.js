@@ -7,7 +7,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const allOrders = await Orders.findAll()
-    res.json(allOrders)
+    res.status(200).json(allOrders)
   } catch (err) {
     next(err)
   }
@@ -23,7 +23,7 @@ router.get('/:userid', async (req, res, next) => {
       }
     })
     if (!orders) return res.sendStatus(404)
-    res.json(orders)
+    res.status(200).json(orders)
   } catch (err) {
     next(err)
   }
@@ -39,7 +39,7 @@ router.get('/:date', async (req, res, next) => {
       }
     })
     if (!allOrders) return res.sendStatus(404)
-    res.json(allOrders)
+    res.status(200).json(allOrders)
   } catch (err) {
     next(err)
   }
@@ -57,7 +57,7 @@ router.get('/:date/:userid', async (req, res, next) => {
       }
     })
     if (!allOrders) return res.sendStatus(404)
-    res.json(allOrders)
+    res.status(200).json(allOrders)
   } catch (err) {
     next(err)
   }
@@ -67,7 +67,7 @@ router.get('/:date/:userid', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await Orders.create(req.body)
-    res.json({
+    res.status(201).json({
       message: 'Created Successfully',
       newOrder
     })
