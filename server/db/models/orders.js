@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Transactions = db.define('transactions', {
+const Orders = db.define('orders', {
   date: {
     type: Sequelize.DATE,
     allowNull: false,
@@ -11,8 +11,8 @@ const Transactions = db.define('transactions', {
     }
   },
   amount: {
-    type: Sequelize.DECIMAL(10, 2)
+    type: Sequelize.FLOAT()
   }
 })
 
-module.exports = Transactions
+module.exports = Orders
