@@ -15,9 +15,15 @@ describe('User model', () => {
 
       beforeEach(async () => {
         cody = await User.create({
+          fName: 'Cody',
+          lName: 'thePug',
+          address: '1000 fullstack ave',
           email: 'cody@puppybook.com',
           password: 'bones'
         })
+      })
+      it('defaults user admin priviledge to false', () => {
+        expect(cody.isAdmin).to.be.equal(false)
       })
 
       it('returns true if the password is correct', () => {
