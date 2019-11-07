@@ -1,6 +1,6 @@
 // const isAdminMiddleware = (req, res, next) => {
 //   const currentUser = req.user
-//   if (currentUser || currentUser.isAdmin) {
+//   if (currentUser.isAdmin) {
 //     next()
 //   } else {
 //     const error = new Error('That action is forbidden!')
