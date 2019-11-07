@@ -1,12 +1,15 @@
-// const isAdminMiddleware = (req, res, next) => {
-//   const currentUser = req.user
-//   if (currentUser.isAdmin) {
-//     next()
-//   } else {
-//     const error = new Error('That action is forbidden!')
-//     error.status(401)
-//     next(error)
-//   }
-// }
+const db = require('./db')
 
-// module.exports = isAdminMiddleware
+const isAdminMiddleware = async (req, res, next) => {
+  const userId = req.session.passport.user
+  const user = await db.models.user.findOne({where: {id: userId}})
+  console.log(user)
+  if (user.dataValues.isAdmin) {
+    next()
+  } else {
+    const error = new Error('That action is forbidden!')
+    next(error)
+  }
+}
+
+module.exports = isAdminMiddleware

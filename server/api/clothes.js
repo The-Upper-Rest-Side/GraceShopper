@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Clothes} = require('../db/models')
-// const isAdmin = require('../admin.middleware')
+const isAdmin = require('../admin.middleware')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -44,7 +44,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const newItem = await Clothes.create(req.body)
     res.status(200).json(newItem)

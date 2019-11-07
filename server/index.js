@@ -67,13 +67,6 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-  // app.use(async (req, res, next) => {
-  //   const userId = req.session.passport.user
-  //   const user =  await db.models.user.findOne({where:{id:userId}})
-  //   console.log("Is our user admin?:", user.dataValues.isAdmin)
-  //   next()
-  // })
-
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
