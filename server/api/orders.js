@@ -3,7 +3,7 @@ const {Orders} = require('../db/models')
 //const {isAminMiddleware} = require('../admin.middleware')
 module.exports = router
 
-//GET all transactions for all users (ADMIN)
+//GET all orders for all users (ADMIN)
 router.get('/', async (req, res, next) => {
   try {
     const allOrders = await Orders.findAll()
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//GET all transactions for a user
+//GET all orders for a single user
 router.get('/:userid', async (req, res, next) => {
   try {
     const id = req.params.id
@@ -29,7 +29,7 @@ router.get('/:userid', async (req, res, next) => {
   }
 })
 
-//GET all transactions for a specific date
+//GET all orders for a specific date
 router.get('/:date', async (req, res, next) => {
   try {
     const date = req.params.date
@@ -45,7 +45,7 @@ router.get('/:date', async (req, res, next) => {
   }
 })
 
-//GET all transactions for a specific date & a specific user
+//GET all orders for a specific date & a specific user
 router.get('/:date/:userid', async (req, res, next) => {
   try {
     const date = req.params.date
@@ -63,7 +63,7 @@ router.get('/:date/:userid', async (req, res, next) => {
   }
 })
 
-//POST create a new Transaction
+//POST create a new order
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await Orders.create(req.body)
