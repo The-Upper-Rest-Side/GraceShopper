@@ -32,14 +32,27 @@ async function seed() {
       category: 'Shirts',
       price: 20,
       size: 4,
-      inventory: 1000
+      inventory: 1000,
+      imageUrl:
+        'https://www.jcrew.com/s7-img-facade/AB836_KA1562?fmt=jpeg&qlt=90,0&resMode=sharp&op_usm=.1,0,0,0&crop=0,0,0,0&wid=2000&hei=2000'
     }),
     Clothes.create({
       name: 'Mom Jeans',
       category: 'Pants',
       price: 50,
       size: 2,
-      inventory: 1000
+      inventory: 1000,
+      imageUrl:
+        'https://lp2.hm.com/hmgoepprod?set=source[/4c/09/4c09c19db513f23539314390c3388969fe34b5e4.jpg],origin[dam],category[ladies_jeans_loose],type[LOOKBOOK],res[m],hmver[1]&call=url[file:/product/main]'
+    }),
+    Clothes.create({
+      name: 'Baby Doll Top',
+      category: 'Shirts',
+      price: 30.0,
+      size: 10,
+      inventory: 5,
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSl7dvpPAyuyMtIS-PLWGBlkjv8mjthMpl0HLppEIUoh8mpUW4FzDqub44hHP_Mjmd-Fw1V90CTbd8KW3VByzfoV3ZtAyZHSEQGBD0oqef3&usqp=CAE'
     })
   ])
 

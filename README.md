@@ -29,7 +29,7 @@ If you want to run the server and/or `webpack` separately, you can also
 
 ## Deployment Link
 
-https://theupperrestsidegraceshopper.herokuapp.com/auth/google
+https://theupperrestsidegraceshopper.herokuapp.com/
 
 ## License
 

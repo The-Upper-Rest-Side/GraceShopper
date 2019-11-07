@@ -13,14 +13,9 @@ describe('Clothes routes', () => {
       category: 'Shirts',
       price: 30.0,
       size: 4,
-      inventory: 4000
-    },
-    {
-      name: 'Baby Doll Top',
-      category: 'Shirts',
-      price: 30.0,
-      size: 10,
-      inventory: 5
+      inventory: 4000,
+      imageUrl:
+        'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQBy01_SYQZnlXRcvET77Iq0v3CSdV7H-68g6pd9RM8Lvy4B3NP9FAcHXr124bJS16JzO-T7AIU4HDP_txB-XAWMIxLrcipVDqXCdmpcapE9W_x3ehe6yiwPQ&usqp=CAE'
     }
   ]
   beforeEach(async () => {
