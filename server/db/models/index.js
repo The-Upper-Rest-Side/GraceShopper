@@ -4,8 +4,7 @@ const Orders = require('./orders')
 
 User.hasMany(Orders)
 Orders.belongsTo(User)
-Orders.belongsToMany(Clothes, {through: 'Orders_Clothes', otherKey: 'isCart'})
-Clothes.belongsToMany(Orders, {through: 'Clothes_Orders', otherKey: 'isCart'})
+Orders.belongsToMany(Clothes, {through: 'Orders_Clothes'})
 
 /**
  * If we had any associations to make, this would be a great place to put them!

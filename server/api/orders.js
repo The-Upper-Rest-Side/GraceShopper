@@ -3,7 +3,9 @@ const {Orders} = require('../db/models')
 //const {isAminMiddleware} = require('../admin.middleware')
 module.exports = router
 
-//GET all orders for all users (ADMIN)
+//All ADMIN Routes
+
+//GET all orders for all users
 router.get('/', async (req, res, next) => {
   try {
     const allOrders = await Orders.findAll()

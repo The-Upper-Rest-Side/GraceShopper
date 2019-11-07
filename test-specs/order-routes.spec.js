@@ -50,7 +50,7 @@ describe('Orders Routes:', () => {
           date: new Date('August 18, 1975 23:15:30'),
           amount: 2.11
         })
-        .expect(200)
+        .expect(201)
 
       expect(res.body.message).to.equal('Created Successfully')
       expect(res.body.newOrder.id).to.not.be.an('undefined')

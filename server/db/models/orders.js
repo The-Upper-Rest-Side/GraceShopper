@@ -11,7 +11,11 @@ const Orders = db.define('orders', {
     }
   },
   amount: {
-    type: Sequelize.FLOAT()
+    type: Sequelize.FLOAT
+  },
+  isCart: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
