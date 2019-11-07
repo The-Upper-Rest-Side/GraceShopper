@@ -1,13 +1,13 @@
 const {expect} = require('chai')
-const Transactions = require('../server/db/models/transactions')
+const Orders = require('../server/db/models/orders')
 
-describe('Transactions model', () => {
+describe('Orders model', () => {
   describe('Validations', () => {
     it('requires `date`', async () => {
-      const transactions = Transactions.build()
+      const orders = Orders.build()
 
       try {
-        await transactions.validate()
+        await orders.validate()
         throw Error(
           'validation was successful but should have failed without `date`'
         )

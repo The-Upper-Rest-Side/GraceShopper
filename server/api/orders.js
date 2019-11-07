@@ -1,75 +1,77 @@
 const router = require('express').Router()
-const {Transactions} = require('../db/models')
+const {Orders} = require('../db/models')
 //const {isAminMiddleware} = require('../admin.middleware')
 module.exports = router
 
-//GET all transactions for all users (ADMIN)
+//All ADMIN Routes
+
+//GET all orders for all users
 router.get('/', async (req, res, next) => {
   try {
-    const allTransactions = await Transactions.findAll()
-    res.json(allTransactions)
+    const allOrders = await Orders.findAll()
+    res.status(200).json(allOrders)
   } catch (err) {
     next(err)
   }
 })
 
-//GET all transactions for a user
+//GET all orders for a single user
 router.get('/:userid', async (req, res, next) => {
   try {
     const id = req.params.id
-    const transactions = await Transactions.findAll({
+    const orders = await Orders.findAll({
       where: {
         userId: id
       }
     })
-    if (!transactions) return res.sendStatus(404)
-    res.json(transactions)
+    if (!orders) return res.sendStatus(404)
+    res.status(200).json(orders)
   } catch (err) {
     next(err)
   }
 })
 
-//GET all transactions for a specific date
+//GET all orders for a specific date
 router.get('/:date', async (req, res, next) => {
   try {
     const date = req.params.date
-    const allTransactions = await Transactions.findAll({
+    const allOrders = await Orders.findAll({
       where: {
         date: date
       }
     })
-    if (!allTransactions) return res.sendStatus(404)
-    res.json(allTransactions)
+    if (!allOrders) return res.sendStatus(404)
+    res.status(200).json(allOrders)
   } catch (err) {
     next(err)
   }
 })
 
-//GET all transactions for a specific date & a specific user
+//GET all orders for a specific date & a specific user
 router.get('/:date/:userid', async (req, res, next) => {
   try {
     const date = req.params.date
     const id = req.params.userId
-    const allTransactions = await Transactions.findAll({
+    const allOrders = await Orders.findAll({
       where: {
         date: date,
         userId: id
       }
     })
-    if (!allTransactions) return res.sendStatus(404)
-    res.json(allTransactions)
+    if (!allOrders) return res.sendStatus(404)
+    res.status(200).json(allOrders)
   } catch (err) {
     next(err)
   }
 })
 
-//POST create a new Transaction
+//POST create a new order
 router.post('/', async (req, res, next) => {
   try {
-    const newTransaction = await Transactions.create(req.body)
-    res.json({
+    const newOrder = await Orders.create(req.body)
+    res.status(201).json({
       message: 'Created Successfully',
-      newTransaction
+      newOrder
     })
   } catch (err) {
     next(err)
