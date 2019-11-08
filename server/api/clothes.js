@@ -66,4 +66,12 @@ router.post('/', isAdmin, async (req, res, next) => {
   }
 })
 
+//POST add to cart
+router.post('/addCart', isAdmin, async (req, res, next) => {
+  // try {
+  // } catch (error) {
+  //   next(error)
+  // }
+})
+
 module.exports = router
