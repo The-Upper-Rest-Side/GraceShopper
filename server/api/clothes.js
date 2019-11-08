@@ -13,6 +13,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const item = await Clothes.findByPk(req.params.id)
+    if (item) {
+      res.status(200).json(item)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/shirts', async (req, res, next) => {
   try {
     const shirts = await Clothes.findAll({
