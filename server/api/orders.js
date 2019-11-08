@@ -1,12 +1,12 @@
 const router = require('express').Router()
 const {Orders} = require('../db/models')
-//const {isAminMiddleware} = require('../admin.middleware')
+const isAdminMiddleware = require('../admin.middleware')
 module.exports = router
 
 //All ADMIN Routes
 
 //GET all orders for all users
-router.get('/', async (req, res, next) => {
+router.get('/', isAdminMiddleware, async (req, res, next) => {
   try {
     const allOrders = await Orders.findAll()
     res.status(200).json(allOrders)
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 })
 
 //GET all orders for a single user
-router.get('/:userid', async (req, res, next) => {
+router.get('/:userid', isAdminMiddleware, async (req, res, next) => {
   try {
     const id = req.params.id
     const orders = await Orders.findAll({
@@ -32,7 +32,7 @@ router.get('/:userid', async (req, res, next) => {
 })
 
 //GET all orders for a specific date
-router.get('/:date', async (req, res, next) => {
+router.get('/:date', isAdminMiddleware, async (req, res, next) => {
   try {
     const date = req.params.date
     const allOrders = await Orders.findAll({
@@ -48,7 +48,7 @@ router.get('/:date', async (req, res, next) => {
 })
 
 //GET all orders for a specific date & a specific user
-router.get('/:date/:userid', async (req, res, next) => {
+router.get('/:date/:userid', isAdminMiddleware, async (req, res, next) => {
   try {
     const date = req.params.date
     const id = req.params.userId
@@ -65,7 +65,7 @@ router.get('/:date/:userid', async (req, res, next) => {
   }
 })
 
-//POST create a new order
+//POST create a new order, can be accessed by both user & admin
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await Orders.create(req.body)
