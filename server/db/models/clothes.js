@@ -16,11 +16,25 @@ const Clothes = db.define('clothes', {
   },
   size: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 0,
+      max: 14
+    }
   },
   inventory: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 0,
+      max: 5000
+    }
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    }
   }
 })
 /*should the size be number or letter. availability boolean?*/

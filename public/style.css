@@ -19,3 +19,17 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.clothesImage {
+  width: 30%;
+  margin: 16px;
+}
+
+.content p {
+  flex-grow: 1;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+}
+
+.clothesContainer {
+  display: flex;
+}

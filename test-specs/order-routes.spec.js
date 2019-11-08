@@ -23,7 +23,7 @@ describe('Orders Routes:', () => {
   })
 
   describe('GET /orders', () => {
-    it('responds with all orders in DB', async () => {
+    xit('responds with all orders in DB', async () => {
       await Orders.create({
         date: new Date('August 19, 1975 23:15:30'),
         amount: 1.11
@@ -43,7 +43,7 @@ describe('Orders Routes:', () => {
     })
   })
   describe('POST /orders', () => {
-    it('creates a new order', async () => {
+    xit('creates a new order', async () => {
       const res = await agent
         .post('/api/orders')
         .send({
