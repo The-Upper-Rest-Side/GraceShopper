@@ -32,7 +32,7 @@ router.get('/orders', async (req, res, next) => {
   try {
     const allOrders = await Orders.findAll({
       where: {
-        userId: req.session.userId
+        userId: req.session.passport.userId
       }
     })
     res.json(allOrders)

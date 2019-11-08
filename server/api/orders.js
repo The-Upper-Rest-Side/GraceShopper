@@ -68,7 +68,10 @@ router.get('/:date/:userid', isAdminMiddleware, async (req, res, next) => {
 //POST create a new order, can be accessed by both user & admin
 router.post('/', async (req, res, next) => {
   try {
+    const userId = req.session.passport.user
+    req.body.userId = userId
     const newOrder = await Orders.create(req.body)
+
     res.status(201).json({
       message: 'Created Successfully',
       newOrder
