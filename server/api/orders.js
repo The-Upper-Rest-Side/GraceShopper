@@ -1,9 +1,7 @@
 const router = require('express').Router()
-const {Orders} = require('../db/models')
+const {Orders, Clothes} = require('../db/models')
 const isAdminMiddleware = require('../admin.middleware')
 module.exports = router
-
-//All ADMIN Routes
 
 //GET all orders for all users
 router.get('/', isAdminMiddleware, async (req, res, next) => {
@@ -67,6 +65,22 @@ router.get('/:date/:userid', isAdminMiddleware, async (req, res, next) => {
 
 //POST create a new order, can be accessed by both user & admin
 router.post('/', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    req.body.userId = userId
+    const newOrder = await Orders.create(req.body)
+
+    res.status(201).json({
+      message: 'Created Successfully',
+      newOrder
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
+//PUT update an order to reflect checkout
+router.put('/', async (req, res, next) => {
   try {
     const userId = req.session.passport.user
     req.body.userId = userId

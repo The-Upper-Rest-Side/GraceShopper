@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Clothes} = require('../db/models')
+const {Clothes, User, Orders} = require('../db/models')
 const isAdmin = require('../admin.middleware')
 
 router.get('/', async (req, res, next) => {
@@ -12,7 +12,6 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
-
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -28,7 +27,6 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.get('/shirts', async (req, res, next) => {
-
   try {
     const type = req.params.type
     const selectedCategory = await Clothes.findAll({
