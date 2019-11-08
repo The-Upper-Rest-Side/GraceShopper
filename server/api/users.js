@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
-const {Transactions} = require('../db/models')
+const {Orders} = require('../db/models')
+const adminMiddleware = require('../admin.middleware')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminMiddleware, async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: ['id', 'email']
@@ -14,7 +15,35 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/transactions', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    const transactions = await Orders.findOne({
+      where: {
+        userId
+      }
+    })
+    res.json(transactions)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/me', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    const me = await User.findOne({
+      where: {
+        id: userId
+      }
+    })
+    res.json(me)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:id', adminMiddleware, async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: ['id', 'email'],
