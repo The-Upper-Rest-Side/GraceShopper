@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Clothes} = require('../db/models')
+const {Clothes, User, Orders} = require('../db/models')
 const isAdmin = require('../admin.middleware')
 
 router.get('/', async (req, res, next) => {
@@ -64,6 +64,14 @@ router.post('/', isAdmin, async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+})
+
+//POST add to cart
+router.post('/addCart', isAdmin, async (req, res, next) => {
+  // try {
+  // } catch (error) {
+  //   next(error)
+  // }
 })
 
 module.exports = router
