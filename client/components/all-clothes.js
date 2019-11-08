@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchAllClothes} from '../store/all-clothes'
+import {fetchAllClothes} from '../reducers/all-clothes'
 
 class Clothes extends Component {
   componentDidMount() {
@@ -18,7 +18,7 @@ class Clothes extends Component {
             clothes.map(item => (
               <div key={item.id}>
                 <img src={item.imageUrl} />
-                <Link to={`/item/${item.id}`}>
+                <Link to={`/items/${item.id}`}>
                   <h3>{item.name}</h3>
                 </Link>
               </div>

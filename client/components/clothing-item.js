@@ -29,7 +29,7 @@ class ClothingItem extends Component {
 //needs an "add to cart" button
 function mapStateToProps(state) {
   return {
-    clothes: state.clothes
+    clothes: state.item
   }
 }
 function mapDispatchToProps(dispatch) {
