@@ -5,7 +5,7 @@ const isAdmin = require('../admin.middleware')
 router.get('/', async (req, res, next) => {
   try {
     const clothes = await Clothes.findAll({
-      attributes: ['name', 'price']
+      attributes: ['id', 'name', 'price']
     })
     res.json(clothes)
   } catch (error) {
