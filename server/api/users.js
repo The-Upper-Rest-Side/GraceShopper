@@ -15,15 +15,15 @@ router.get('/', adminMiddleware, async (req, res, next) => {
   }
 })
 
-router.get('/transactions', async (req, res, next) => {
+router.get('/orders', async (req, res, next) => {
   try {
     const userId = req.session.passport.user
-    const transactions = await Orders.findOne({
+    const orders = await Orders.findAll({
       where: {
         userId
       }
     })
-    res.json(transactions)
+    res.json(orders)
   } catch (err) {
     next(err)
   }
