@@ -57,14 +57,14 @@ router.get('/:id', adminMiddleware, async (req, res, next) => {
   }
 })
 
-router.get('/transactions', async (req, res, next) => {
+router.get('/orders', async (req, res, next) => {
   try {
-    const allTransactions = await Transactions.findAll({
+    const allOrders = await Orders.findAll({
       where: {
-        userId: req.session.userId
+        userId: req.session.passport.userId
       }
     })
-    res.json(allTransactions)
+    res.json(allOrders)
   } catch (err) {
     next(err)
   }
