@@ -5,7 +5,8 @@ const Cart = require('./cart')
 
 User.hasMany(Orders)
 Orders.belongsTo(User)
-Orders.belongsToMany(Clothes, {through: Cart})
+//Changed Orders to User bc we dont want to make an order before we checkout - SIMON G.
+User.belongsToMany(Clothes, {through: Cart})
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -23,5 +24,6 @@ Orders.belongsToMany(Clothes, {through: Cart})
 module.exports = {
   User,
   Clothes,
-  Orders
+  Orders,
+  Cart
 }

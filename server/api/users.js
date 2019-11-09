@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Orders} = require('../db/models')
+const {User, Orders, Cart} = require('../db/models')
 const adminMiddleware = require('../admin.middleware')
 module.exports = router
 
@@ -11,6 +11,25 @@ router.get('/', adminMiddleware, async (req, res, next) => {
     res.json(users)
   } catch (err) {
     next(err)
+  }
+})
+
+//GET all items in a users cart
+router.get('/cart', async (req, res, next) => {
+  try {
+    // const userId = 3; //Use to test
+    const userId = req.session.passport.user
+    const cart = await Cart.findAll({
+      where: {
+        userId: userId,
+        isCart: true
+      }
+    })
+
+    if (!cart.length) return res.send('Cart is empty') //What do we want to send if nothing is in cart? - SIMON G.
+    res.status(200).json(cart)
+  } catch (error) {
+    next(error)
   }
 })
 

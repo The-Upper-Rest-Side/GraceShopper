@@ -8,7 +8,8 @@ const Orders = db.define('orders', {
     validate: {
       isDate: true,
       notEmpty: true
-    }
+    },
+    defaultValue: new Date()
   },
   amount: {
     type: Sequelize.FLOAT,
