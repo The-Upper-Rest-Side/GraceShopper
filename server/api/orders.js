@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Orders, Cart} = require('../db/models')
+const {Orders, Cart, Clothes} = require('../db/models')
 const isAdminMiddleware = require('../admin.middleware')
 module.exports = router
 
@@ -80,6 +80,17 @@ router.post('/', async (req, res, next) => {
         }
       }
     )
+    // Still working on how to change invetory when order has been made, should we just adjust inventory when an item is added to cart? -SIMON G.
+    // Clothes.update(
+    //   {
+    //     inventory: this.inventory - 1
+    //   },
+    //   {
+    //     where: {
+    //       id: req.body.ClothesId
+    //     }
+    //   }
+    // )
 
     res.status(201).json({
       message: 'Created Successfully',
