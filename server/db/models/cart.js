@@ -16,8 +16,8 @@ const Cart = db.define(
   },
   {
     hooks: {
-      afterCreate: cart => {
-        cart.quantity++
+      beforeUpdate: cart => {
+        ++cart.quantity
       }
     }
   }

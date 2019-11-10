@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Orders, Cart, Clothes} = require('../db/models')
+const {Orders, Cart} = require('../db/models')
 const isAdminMiddleware = require('../admin.middleware')
 module.exports = router
 
