@@ -66,15 +66,30 @@ router.post('/', isAdmin, async (req, res, next) => {
 })
 
 //PUT add to cart
-router.put('/:id', async (req, res, next) => {
+router.put('/:id/cart', async (req, res, next) => {
   try {
-    // const userId = 2 //use for testing
-    const userId = req.session.passport.user
+    const userId = 2 //use for testing
+    // const userId = req.session.passport.user
     const clothesId = req.params.id
     const user = await User.findByPk(userId)
     const clothe = await Clothes.findByPk(clothesId)
 
+    if (clothe.inventory === 0) return res.send('Out of Stock!')
+
+    Clothes.update(
+      {
+        inventory: clothe.inventory - 1
+      },
+      {
+        where: {
+          id: clothesId
+        }
+      }
+    )
+
     user.addClothe(clothe)
+
+    // Cart needs to show how many items bought, need to update quantity everytime added to cart, hook?- SIMON G.
 
     res.send('Added to cart!')
   } catch (error) {
@@ -83,13 +98,24 @@ router.put('/:id', async (req, res, next) => {
 })
 
 //DELETE remove from cart
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id/cart', async (req, res, next) => {
   try {
-    // const userId = 2 //use for testing
-    const userId = req.session.passport.user
+    const userId = 2 //use for testing
+    // const userId = req.session.passport.user
     const clothesId = req.params.id
     const user = await User.findByPk(userId)
     const clothe = await Clothes.findByPk(clothesId)
+
+    Clothes.update(
+      {
+        inventory: clothe.inventory + 1
+      },
+      {
+        where: {
+          id: clothesId
+        }
+      }
+    )
 
     user.removeClothe(clothe)
 
