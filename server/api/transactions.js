@@ -72,35 +72,3 @@ router.get('/:date/:userid', isAdminMiddleware, async (req, res, next) => {
     next(err)
   }
 })
-
-//POST create a new order & change isCart to false
-router.post('/checkout', async (req, res, next) => {
-  try {
-    const userId = req.session.passport.user
-    const newTransaction = await Transactions.create({userId})
-
-    const itemsInCart = await Cart.findAll({
-      where: {
-        userId
-      }
-    })
-
-    // console.log('>>>>>>itemsInCart', itemsInCart[0])
-    itemsInCart.forEach(async element => {
-      // req.body.clotheId = element.dataValues.clotheId;
-      // req.body.quantity = element.dataValues.quantity
-      const quantity = element.dataValues.quantity
-      const clotheId = element.dataValues.clotheId
-
-      await Orders.create({quantity, userId, clotheId})
-    })
-
-    // res.status(201).json({
-    //   message: 'Order Created Successfully',
-    //   newOrder
-    // })
-    res.send('what we got')
-  } catch (err) {
-    next(err)
-  }
-})
