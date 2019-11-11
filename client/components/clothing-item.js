@@ -9,6 +9,7 @@ class ClothingItem extends Component {
   componentDidMount() {
     this.props.getItem(this.props.match.params.id)
   }
+
   render() {
     console.log(this.props)
     return (
