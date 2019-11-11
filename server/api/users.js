@@ -26,7 +26,21 @@ router.get('/cart', async (req, res, next) => {
     })
 
     if (!cart.length) return res.send('Cart is empty') //What do we want to send if nothing is in cart? - SIMON G.
-    res.status(200).json(cart)
+    const cartClothes = []
+
+    for (let i = 0; i < cart.length; i++) {
+      const element = cart[i]
+      const clothe = await Clothes.findOne({
+        where: {id: element.dataValues.clotheId}
+      })
+
+      cartClothes.push({
+        ...clothe.dataValues,
+        quantity: element.dataValues.quantity
+      })
+    }
+
+    res.status(200).json(cartClothes[0])
   } catch (error) {
     next(error)
   }
