@@ -21,8 +21,7 @@ router.get('/cart', async (req, res, next) => {
     const userId = req.session.passport.user
     const cart = await Cart.findAll({
       where: {
-        userId: userId,
-        isCart: true
+        userId: userId
       }
     })
 
