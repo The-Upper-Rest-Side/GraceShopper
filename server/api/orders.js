@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Orders, Clothes} = require('../db/models')
+const {Orders, Cart} = require('../db/models')
 const isAdminMiddleware = require('../admin.middleware')
 module.exports = router
 
@@ -63,28 +63,25 @@ router.get('/:date/:userid', isAdminMiddleware, async (req, res, next) => {
   }
 })
 
-//POST create a new order, can be accessed by both user & admin
+//POST create a new order & change isCart to false
 router.post('/', async (req, res, next) => {
   try {
+    // req.body.userId = 2; //use for testing
     const userId = req.session.passport.user
     req.body.userId = userId
+    req.body.amount = req.body.amount || 1
     const newOrder = await Orders.create(req.body)
 
-    res.status(201).json({
-      message: 'Created Successfully',
-      newOrder
-    })
-  } catch (err) {
-    next(err)
-  }
-})
-
-//PUT update an order to reflect checkout
-router.put('/', async (req, res, next) => {
-  try {
-    const userId = req.session.passport.user
-    req.body.userId = userId
-    const newOrder = await Orders.create(req.body)
+    Cart.update(
+      {
+        isCart: false
+      },
+      {
+        where: {
+          userId: req.body.userId
+        }
+      }
+    )
 
     res.status(201).json({
       message: 'Created Successfully',

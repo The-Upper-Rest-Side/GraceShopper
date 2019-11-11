@@ -4,7 +4,12 @@ const db = require('../db')
 const Cart = db.define('cart', {
   isCart: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
+    defaultValue: true
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
   }
 })
 
