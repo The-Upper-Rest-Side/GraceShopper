@@ -69,6 +69,7 @@ router.post('/', async (req, res, next) => {
     // req.body.userId = 2; //use for testing
     const userId = req.session.passport.user
     req.body.userId = userId
+    req.body.amount = req.body.amount || 1
     const newOrder = await Orders.create(req.body)
 
     Cart.update(

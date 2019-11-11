@@ -17,7 +17,7 @@ router.get('/', adminMiddleware, async (req, res, next) => {
 //GET all items in a users cart
 router.get('/cart', async (req, res, next) => {
   try {
-    // const userId = 3; //Use to test
+    // const userId = 2; //Use to test
     const userId = req.session.passport.user
     const cart = await Cart.findAll({
       where: {

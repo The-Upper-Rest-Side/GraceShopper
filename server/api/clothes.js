@@ -68,8 +68,8 @@ router.post('/', isAdmin, async (req, res, next) => {
 //PUT add to cart
 router.put('/:id/cart', async (req, res, next) => {
   try {
-    // const userId = 2 //use for testing
-    const userId = req.session.passport.user
+    const userId = 2 //use for testing
+    // const userId = req.session.passport.user
     const clothesId = req.params.id
     const user = await User.findByPk(userId)
     const clothe = await Clothes.findByPk(clothesId)
