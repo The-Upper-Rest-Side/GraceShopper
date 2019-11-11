@@ -70,28 +70,51 @@ router.put('/:id/cart', async (req, res, next) => {
   try {
     const userId = 2 //use for testing
     // const userId = req.session.passport.user
-    const clothesId = req.params.id
+    const clotheId = req.params.id
     const user = await User.findByPk(userId)
-    const clothe = await Clothes.findByPk(clothesId)
+    const clothe = await Clothes.findByPk(clotheId)
 
     if (clothe.inventory === 0) return res.send('Out of Stock!')
 
-    Clothes.update(
+    await Clothes.update(
       {
         inventory: clothe.inventory - 1
       },
       {
         where: {
-          id: clothesId
+          id: clotheId
         }
       }
     )
 
-    user.addClothe(clothe)
+    await user.addClothe(clothe)
 
-    // Cart needs to show how many items bought, need to update quantity everytime added to cart, hook?- SIMON G.
+    const cartRow = await Cart.findOne({
+      where: {
+        userId,
+        clotheId
+      }
+    })
 
-    res.send('Added to cart!')
+    const newQuant = ++cartRow.dataValues.quantity
+
+    await Cart.update(
+      {
+        quantity: newQuant
+      },
+      {
+        where: {
+          userId,
+          clotheId
+        }
+      }
+    )
+
+    res.send(
+      `Added to cart! Now you have ${newQuant} ${
+        clothe.dataValues.name
+      }(s) in your cart.`
+    )
   } catch (error) {
     next(error)
   }
@@ -100,24 +123,48 @@ router.put('/:id/cart', async (req, res, next) => {
 //DELETE remove from cart
 router.delete('/:id/cart', async (req, res, next) => {
   try {
-    // const userId = 2 //use for testing
-    const userId = req.session.passport.user
-    const clothesId = req.params.id
+    const userId = 2 //use for testing
+    // const userId = req.session.passport.user
+    const clotheId = req.params.id
     const user = await User.findByPk(userId)
-    const clothe = await Clothes.findByPk(clothesId)
+    const clothe = await Clothes.findByPk(clotheId)
 
-    Clothes.update(
+    await Clothes.update(
       {
         inventory: clothe.inventory + 1
       },
       {
         where: {
-          id: clothesId
+          id: clotheId
         }
       }
     )
 
-    user.removeClothe(clothe)
+    const cartRow = await Cart.findOne({
+      where: {
+        userId,
+        clotheId
+      }
+    })
+
+    let quantity = cartRow.dataValues.quantity
+    console.log('before', quantity)
+    quantity--
+    if (quantity) {
+      await Cart.update(
+        {
+          quantity: quantity
+        },
+        {
+          where: {
+            userId,
+            clotheId
+          }
+        }
+      )
+    } else await user.removeClothe(clothe)
+
+    console.log('after', quantity)
 
     res.send('Removed from cart!')
   } catch (error) {

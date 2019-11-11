@@ -2,10 +2,10 @@ const User = require('./user')
 const Clothes = require('./clothes')
 const Orders = require('./orders')
 const Cart = require('./cart')
+const Transactions = require('./transactions')
 
-User.hasMany(Orders)
-Orders.belongsTo(User)
-//Changed Orders to User bc we dont want to make an order before we checkout - SIMON G.
+User.hasMany(Transactions)
+Orders.belongsTo(Transactions)
 User.belongsToMany(Clothes, {through: Cart})
 
 /**
@@ -25,5 +25,6 @@ module.exports = {
   User,
   Clothes,
   Orders,
+  Transactions,
   Cart
 }
