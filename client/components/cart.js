@@ -1,18 +1,26 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItem} from '../../client/reducers/item'
-import {checkout} from '../../client/reducers/cart'
+import {checkout, getCart} from '../../client/reducers/cart'
 
 class CartView extends Component {
   constructor(props) {
     super(props)
   }
   componentDidMount() {
-    // this.props.getItem(this.props.match.params.id)//
+    this.props.getCart()
   }
   render() {
-    console.log(this.props)
-    return <div>yoooo</div>
+    console.log('CARTTTT', this.props.cart.data)
+    return (
+      <div className="cartContainer">
+        <img className="smallImage" />
+        <p>Product: Sample Name</p>
+        <p>Price: $0 </p>
+        <p>Size: One Size Fits All</p>
+        <button type="button">Delete</button>
+      </div>
+    )
   }
 }
 
@@ -24,7 +32,9 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    checkout: () => dispatch(checkout())
+    checkout: () => dispatch(checkout()),
+    getCart: () => dispatch(getCart())
+    // getCart: () =>
   }
 }
 

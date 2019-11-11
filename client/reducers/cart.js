@@ -4,6 +4,7 @@ import axios from 'axios'
 const ADD_ITEM = 'ADD_ITEM'
 const DELETE_ITEM = 'DELETE_ITEM'
 const CLEAR_CART = 'CLEAR CART'
+const GOT_CART = 'GOT_CART'
 const CHECKOUT = 'CHECKOUT'
 
 const cart = []
@@ -22,12 +23,41 @@ const deleteItem = itemId => {
   }
 }
 
+const gotCart = userCart => {
+  return {
+    type: GOT_CART,
+    userCart
+  }
+}
+
 const clearCart = () => {
   return {
     type: CLEAR_CART
   }
 }
 
+export function addToCart(itemId) {
+  return async dispatch => {
+    try {
+      const item = await axios.put(`api/clothes/${itemId}/cart`)
+      dispatch(addItem(item))
+    } catch (error) {
+      dispatch(console.error(error))
+    }
+  }
+}
+
+export function getCart() {
+  return async dispatch => {
+    try {
+      const userCart = await axios.get(`api/users/cart`)
+
+      dispatch(gotCart(userCart))
+    } catch (error) {
+      dispatch(console.error(error))
+    }
+  }
+}
 export function checkout() {
   return dispatch => {
     try {
@@ -52,6 +82,8 @@ export default function(state = cart, action) {
       })
     case CLEAR_CART:
       return []
+    case GOT_CART:
+      return [...state, action.userCart]
     default:
       return state
   }
