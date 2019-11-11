@@ -6,7 +6,7 @@ const Orders = db.define('orders', {
     type: Sequelize.FLOAT,
     allowNull: false
   },
-  clothesId: {
+  clotheId: {
     type: Sequelize.INTEGER
   },
   userId: {
