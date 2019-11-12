@@ -8,24 +8,15 @@ class CartView extends Component {
     super(props)
   }
 
-  guestCart() {
-    if (this.props.user === 'guest') {
-      this.props.cart = JSON.parse(localStorage.getItem('cart'))
-    }
-  }
-
   componentDidMount() {
-    // if(this.guestCart())
-    this.props.getCart()
+    this.props.user !== 'guest' ? this.props.getCart() : this.props.guestCart()
   }
   render() {
-    console.log('CARTTTT', this.props.cart.data)
+    console.log('CARTTTT', this.props)
     return (
       <div className="cartContainer">
         <img className="smallImage" />
-        <p>Product: Sample Name</p>
-        <p>Price: $0 </p>
-        <p>Size: One Size Fits All</p>
+        <div>{this.props.guestCart()}</div>
         <button type="button">Delete</button>
       </div>
     )
@@ -35,14 +26,17 @@ class CartView extends Component {
 //needs an "add to cart" button
 function mapStateToProps(state) {
   return {
-    cart: state.cart,
-    user: state.user
+    cart: state.cart
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
     checkout: () => dispatch(checkout()),
-    getCart: () => dispatch(getCart())
+    getCart: () => dispatch(getCart()),
+    guestCart() {
+      let cart = JSON.parse(window.localStorage.getItem('name'))
+      return cart.name
+    }
   }
 }
 
