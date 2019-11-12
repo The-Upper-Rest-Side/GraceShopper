@@ -3,7 +3,7 @@ const Orders = require('../server/db/models/orders')
 
 describe('Orders model', () => {
   describe('Validations', () => {
-    it('requires `date`', async () => {
+    xit('requires `date`', async () => {
       const orders = Orders.build()
 
       try {
