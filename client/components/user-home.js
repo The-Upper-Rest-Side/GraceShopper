@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -10,7 +11,17 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      {email ? (
+        <h3>Welcome, {email}</h3>
+      ) : (
+        <div>
+          <h1>Welcome stranger!!</h1>{' '}
+          <h2>
+            Please take some time to complete your{' '}
+            <Link to="/profile">profile</Link>
+          </h2>
+        </div>
+      )}
     </div>
   )
 }
@@ -20,7 +31,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.firstName
   }
 }
 
