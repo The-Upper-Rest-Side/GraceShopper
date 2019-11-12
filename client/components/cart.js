@@ -13,7 +13,6 @@ class CartView extends Component {
     this.props.user !== 'guest' ? this.props.getCart() : this.props.guestCart()
   }
   render() {
-
     let {cart} = this.props
     const {remove} = this.props
     console.log(this.props)
@@ -40,14 +39,11 @@ function mapDispatchToProps(dispatch) {
   return {
     checkout: () => dispatch(checkout()),
     getCart: () => dispatch(getCart()),
-
     guestCart() {
       let cart = JSON.parse(window.localStorage.getItem('name'))
       return cart.name
-    }
-
+    },
     remove: item => dispatch(removeItem(item))
-
   }
 }
 
