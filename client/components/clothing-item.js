@@ -15,20 +15,20 @@ class ClothingItem extends Component {
     console.log(this.props)
     return (
       <div id="clothesContainer">
-        <img className="clothesImage" src={this.props.clothes.imageUrl} />
+        <img className="clothesImage" src={this.props.item.imageUrl} />
         <div id="content">
-          <p>Product: {this.props.clothes.name}</p>
-          <p>Price: ${this.props.clothes.price}</p>
-          <p>Size: {this.props.clothes.size}</p>
+          <p>Product: {this.props.item.name}</p>
+          <p>Price: ${this.props.item.price}</p>
+          <p>Size: {this.props.item.size}</p>
           <p>
-            <input
-              min="1"
-              type="number"
-              id="quantity"
-              name="quantity"
-              value="10"
-            />
-            <button type="button">Add to Cart</button>
+            <button
+              type="button"
+              onClick={() => {
+                this.props.addItem(this.props.item)
+              }}
+            >
+              Add to Cart
+            </button>
           </p>
         </div>
       </div>
