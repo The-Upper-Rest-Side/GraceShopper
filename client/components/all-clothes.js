@@ -9,6 +9,7 @@ class Clothes extends Component {
   }
 
   render() {
+    console.log(localStorage.getItem('here'))
     let clothes = this.props.clothes.data
     return (
       <div>

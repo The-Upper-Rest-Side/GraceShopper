@@ -7,7 +7,15 @@ class CartView extends Component {
   constructor(props) {
     super(props)
   }
+
+  guestCart() {
+    if (this.props.user === 'guest') {
+      this.props.cart = JSON.parse(localStorage.getItem('cart'))
+    }
+  }
+
   componentDidMount() {
+    // if(this.guestCart())
     this.props.getCart()
   }
   render() {
@@ -27,7 +35,8 @@ class CartView extends Component {
 //needs an "add to cart" button
 function mapStateToProps(state) {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 function mapDispatchToProps(dispatch) {
