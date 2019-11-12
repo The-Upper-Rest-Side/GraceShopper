@@ -5,6 +5,7 @@ const ADD_ITEM = 'ADD_ITEM'
 const DELETE_ITEM = 'DELETE_ITEM'
 const CLEAR_CART = 'CLEAR CART'
 const GOT_CART = 'GOT_CART'
+
 const CHECKOUT = 'CHECKOUT'
 
 const cart = []
