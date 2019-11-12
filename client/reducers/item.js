@@ -15,7 +15,6 @@ export function getItem(itemId) {
   return async (dispatch, getState) => {
     try {
       const {data} = await axios.get(`/api/clothes/${itemId}`)
-      console.log(data)
       dispatch(gotItems(data))
     } catch (error) {
       dispatch(console.error(error))
