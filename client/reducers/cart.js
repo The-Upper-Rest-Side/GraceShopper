@@ -36,10 +36,10 @@ const clearCart = () => {
   }
 }
 
-export function addToCart(itemId) {
+export function addToCart(item) {
   return async dispatch => {
     try {
-      const item = await axios.put(`api/clothes/${itemId}/cart`)
+      await axios.put(`/api/cart/${item.id}`)
       dispatch(addItem(item))
     } catch (error) {
       dispatch(console.error(error))

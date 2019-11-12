@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItem} from '../../client/reducers/item'
-import {checkout, getCart} from '../../client/reducers/cart'
+import {checkout, getCart, addToCart} from '../../client/reducers/cart'
 
 class CartView extends Component {
   constructor(props) {
@@ -34,7 +34,6 @@ function mapDispatchToProps(dispatch) {
   return {
     checkout: () => dispatch(checkout()),
     getCart: () => dispatch(getCart())
-    // getCart: () =>
   }
 }
 

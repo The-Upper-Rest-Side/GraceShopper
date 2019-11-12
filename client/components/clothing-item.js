@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItem} from '../../client/reducers/item'
+import {addToCart} from '../../client/reducers/cart'
 
 class ClothingItem extends Component {
   constructor(props) {
@@ -38,12 +39,13 @@ class ClothingItem extends Component {
 //needs an "add to cart" button
 function mapStateToProps(state) {
   return {
-    clothes: state.item
+    item: state.item
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getItem: itemId => dispatch(getItem(itemId))
+    getItem: itemId => dispatch(getItem(itemId)),
+    addItem: item => dispatch(addToCart(item))
   }
 }
 
