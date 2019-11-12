@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Orders, Cart, Clothes} = require('../db/models')
+const {User, Orders, Cart, Clothes, Transactions} = require('../db/models')
 const adminMiddleware = require('../admin.middleware')
 module.exports = router
 
@@ -46,15 +46,29 @@ router.get('/cart', async (req, res, next) => {
   }
 })
 
-router.get('/orders', async (req, res, next) => {
+router.get('/transactions', async (req, res, next) => {
   try {
-    const userId = req.session.passport.user
-    const orders = await Orders.findAll({
+    // const id = req.sessions.passport.user
+    const id = 2
+    const transactions = await Transactions.findAll({
       where: {
-        userId
+        userId: id
       }
     })
-    res.json(orders)
+    if (!transactions) return res.sendStatus(404)
+    const orders = []
+
+    for (let i = 0; i < transactions.length; i++) {
+      const elem = transactions[i]
+      const order = await Orders.findAll({
+        where: {
+          transactionId: elem.dataValues.id
+        }
+      })
+      orders.push(...order)
+    }
+
+    res.status(200).json(orders)
   } catch (err) {
     next(err)
   }
