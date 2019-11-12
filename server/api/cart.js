@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Clothes, User, Cart} = require('../db/models')
+const {Clothes, User, Cart, Transactions, Orders} = require('../db/models')
 const isAdmin = require('../admin.middleware')
 
 //PUT add to cart
@@ -108,33 +108,53 @@ router.delete('/:id/cart', async (req, res, next) => {
   }
 })
 
-//POST create a new order & change isCart to false
+//POST create an transaction/move cart to orders and clear cart
 router.post('/checkout', async (req, res, next) => {
   try {
-    const userId = req.session.passport.user
-    const newTransaction = await Transactions.create({userId})
-
-    const itemsInCart = await Cart.findAll({
+    const userId = 2
+    // const userId = req.session.passport.user
+    const transaction = await Transactions.create({userId})
+    let amount = 0
+    const cart = await Cart.findAll({
       where: {
         userId
       }
     })
 
-    // console.log('>>>>>>itemsInCart', itemsInCart[0])
-    itemsInCart.forEach(async element => {
+    // console.log('>>>>>>cart', cart[0])
+    cart.forEach(async element => {
       // req.body.clotheId = element.dataValues.clotheId;
       // req.body.quantity = element.dataValues.quantity
       const quantity = element.dataValues.quantity
       const clotheId = element.dataValues.clotheId
+      const clothe = await Clothes.findByPk(clotheId)
+      const price = clothe.dataValues.price
+      amount += price * quantity
 
-      await Orders.create({quantity, userId, clotheId})
+      await Orders.create({
+        quantity,
+        userId,
+        clotheId,
+        transactionId: transaction.dataValues.id
+      })
+      await Cart.destroy({
+        where: {
+          clotheId
+        }
+      })
+      await Transactions.update(
+        {
+          amount
+        },
+        {
+          where: {
+            id: transaction.dataValues.id
+          }
+        }
+      )
     })
 
-    // res.status(201).json({
-    //   message: 'Order Created Successfully',
-    //   newOrder
-    // })
-    res.send('what we got')
+    res.send('Checked out!')
   } catch (err) {
     next(err)
   }
