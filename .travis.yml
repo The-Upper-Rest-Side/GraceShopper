@@ -20,9 +20,9 @@ script:
 
 # before_deploy:
 #   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: theupperrestsidegraceshopper # see README
+  api_key:
+    secure: "hSJwXJEBG8d561tE1msTyokb/18XSS+ooXGxkw4UoTbJZKUbPmw8vXBkhGhghuJ/WKKtqh9jrWTitPh9+YCiy64O/BYur3peP9HvdK67gVFq42BQsIsDWQEHfVLup/+oYXIMcigfy632SFZx9brBRK6j/qelJSbOqnk5rkg3jDptYyYHl29opAEiTBZZNVqNSHvnXJCl0ZUFzBXxVs0TyG+bFBuinS+WNbQj+2gsEOkSsLVbZMf++F+g6SivHmdjQV8EWZX8eWMSs51OysbEhht2i2FiONXANCxEujgsZjvEnQFYdVQwiKOJWASDNcqzPuWCzm3m+iNXQ8cSTARGcXO8ucQDs1W8SLD/fb9LK//A3hdl/YWbd7Ql11MknAE+hrq81oShEnzfAp7k8hePUDkPRMfFLCRMDoRkKZgbpXjT7vWiUMljZWp5r+FivT4QcbnRwquDkT74sHmNMt/M7rrNWQGHtP+gKO4JMuvwmrqjfFwciAsw6pIFqc4m3Fm5iZz24wDguZCNKJqSv0Nfvur8myw8QLaHhvyitmAGyiDFqlUaJATK7T6mMHimzkV3xP93ReFwjwH1kAfyphWhPGD+jjTWQDPrIH3k0O1zPhD4tiOKsaO8ieqanr4hwA+rasj+XAABQqrIxoIrrTRsT3TSd3bv4XFGEAa2k19nOLo="
