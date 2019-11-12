@@ -1,15 +1,21 @@
 body {
   font-family: sans-serif;
+  background-color: #c5caeb;
+  backface-visibility: ;
 }
 
 a {
   text-decoration: none;
+  text-align: center;
 }
 
 label {
   display: block;
 }
 
+#title {
+  color: black;
+}
 nav a {
   display: inline-block;
   margin: 1em;
@@ -25,11 +31,68 @@ form div {
   margin: 16px;
 }
 
-.content p {
+#content {
   flex-grow: 1;
+  align-self: flex-end;
   font-family: 'Trebuchet MS', Helvetica, sans-serif;
 }
 
-.clothesContainer {
+#clothesContainer {
   display: flex;
+  flex-direction: row;
+}
+
+.cartContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}
+
+#navBar {
+  background-color: #4e4f54;
+}
+
+h1 {
+  text-align: center;
+  flex-flow: row nowrap;
+}
+
+#allClothes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#itemDisplayed {
+}
+
+/* #itemDisplayed:hover {
+  flex-grow: 1;
+
+} */
+
+#quantity {
+  width: 30px;
+}
+
+#logout {
+  position: absolute;
+  right: 10px;
+}
+
+#profileContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#profileChild {
+  /* position: absolute;
+  left: 250px;
+  text-align: center; */
+  /* width: 50%; */
+  /* height: 20px; */
 }
