@@ -13,15 +13,23 @@ class ClothingItem extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className="clothesContainer">
+      <div id="clothesContainer">
         <img className="clothesImage" src={this.props.clothes.imageUrl} />
-        <div className="content">
+        <div id="content">
           <p>Product: {this.props.clothes.name}</p>
           <p>Price: ${this.props.clothes.price}</p>
           <p>Size: {this.props.clothes.size}</p>
-          <button type="button">Add to Cart</button>
+          <p>
+            <input
+              min="1"
+              type="number"
+              id="quantity"
+              name="quantity"
+              value="10"
+            />
+            <button type="button">Add to Cart</button>
+          </p>
         </div>
-        <p />
       </div>
     )
   }
