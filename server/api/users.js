@@ -66,8 +66,6 @@ router.get('/transactions', async (req, res, next) => {
 })
 router.put('/me', async (req, res, next) => {
   try {
-    console.log('In user route >>>>>>>>')
-
     const userId = req.session.passport.user
     await User.update(req.body, {where: {id: userId}})
 
