@@ -59,8 +59,7 @@ router.put('/:id', async (req, res, next) => {
 //DELETE remove from cart
 router.delete('/:id/cart', async (req, res, next) => {
   try {
-    const userId = 2 //use for testing
-    // const userId = req.session.passport.user
+    const userId = req.session.passport.user
     const clotheId = req.params.id
     const user = await User.findByPk(userId)
     const clothe = await Clothes.findByPk(clotheId)

@@ -16,10 +16,10 @@ const addItem = item => {
   }
 }
 
-const deleteItem = itemId => {
+const deleteItem = item => {
   return {
     type: DELETE_ITEM,
-    itemId
+    item
   }
 }
 
@@ -47,12 +47,26 @@ export function addToCart(item) {
   }
 }
 
+export function removeItem(item) {
+  return async dispatch => {
+    try {
+      console.log('aA>sfSD>Ff', item.id)
+      await axios.delete(`/api/cart/${item.id}/cart`)
+      dispatch(deleteItem(item))
+    } catch (error) {
+      dispatch(console.error(error))
+    }
+  }
+}
+
 export function getCart() {
   return async dispatch => {
     try {
       const userCart = await axios.get(`api/users/cart`)
-
-      dispatch(gotCart(userCart))
+      console.log('USERRR CART', userCart.data)
+      if (userCart.data !== 'Cart is empty') {
+        dispatch(gotCart(userCart.data))
+      }
     } catch (error) {
       dispatch(console.error(error))
     }
@@ -78,12 +92,12 @@ export default function(state = cart, action) {
       return [...state, action.item]
     case DELETE_ITEM:
       return state.filter(item => {
-        return item.id !== action.itemId
+        return item !== action.item
       })
     case CLEAR_CART:
       return []
     case GOT_CART:
-      return [...state, action.userCart]
+      return action.userCart
     default:
       return state
   }

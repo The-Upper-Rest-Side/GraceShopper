@@ -12,7 +12,6 @@ class ClothingItem extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div id="clothesContainer">
         <img className="clothesImage" src={this.props.item.imageUrl} />

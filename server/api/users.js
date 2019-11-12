@@ -34,7 +34,7 @@ router.get('/cart', async (req, res, next) => {
         quantity: element.dataValues.quantity
       })
     }
-    res.status(200).json(cartClothes[0])
+    res.status(200).json(cartClothes)
   } catch (error) {
     next(error)
   }
