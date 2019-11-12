@@ -64,15 +64,12 @@ router.get('/transactions', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/me', async (req, res, next) => {
+router.put('/me', async (req, res, next) => {
   try {
     const userId = req.session.passport.user
-    const me = await User.findOne({
-      where: {
-        id: userId
-      }
-    })
-    res.json(me)
+    await User.update(req.body, {where: {id: userId}})
+
+    res.json({...req.body, id: userId})
   } catch (err) {
     next(err)
   }

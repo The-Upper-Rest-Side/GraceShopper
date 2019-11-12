@@ -1,17 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-// import {getProfile} from '../reducers/userProfile'
+import {updateMe} from '../reducers/user'
 
 class UserProfile extends Component {
+  constructor(props) {
+    super(props)
+    this.updateUserProfile = this.updateUserProfile.bind(this)
+  }
+
   updateUserProfile() {
     event.preventDefault()
     const updatedProfile = {
       email: event.target.email.value,
       firstName: event.target.firstName.value,
-      lastName: event.target.email.value
+      lastName: event.target.lastName.value
     }
-    console.log(updatedProfile)
+    console.log(this.props)
+    this.props.updateProfile(updatedProfile)
   }
 
   render() {
@@ -36,6 +42,8 @@ class UserProfile extends Component {
             value={`${profile.email}`}
             id="profileChild"
           />
+          <label id="profileChild"> Address:</label>
+          <input type="text" name="address" id="profileChild" />
           <input type="submit" value="Submit" id="profileChild" />
         </form>
       </div>
@@ -46,5 +54,10 @@ const mapState = state => ({
   profile: state.user
 })
 
-const connectedUserProfile = connect(mapState, null)(UserProfile)
+const mapDispatch = dispatch => {
+  return {
+    updateProfile: user => dispatch(updateMe(user))
+  }
+}
+const connectedUserProfile = connect(mapState, mapDispatch)(UserProfile)
 export default connectedUserProfile
