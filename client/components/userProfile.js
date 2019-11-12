@@ -32,9 +32,19 @@ class UserProfile extends Component {
           onSubmit={this.updateUserProfile}
         >
           <label id="profileChild"> First name:</label>
-          <input type="text" name="firstName" id="profileChild" />
+          <input
+            type="text"
+            name="firstName"
+            id="profileChild"
+            value={`${profile.firstName}`}
+          />
           <label id="profileChild">Last name:</label>
-          <input type="text" name="lastName" id="profileChild" />
+          <input
+            type="text"
+            name="lastName"
+            id="profileChild"
+            value={`${profile.lastName}`}
+          />
           <label id="profileChild">email:</label>
           <input
             type="text"
@@ -43,7 +53,12 @@ class UserProfile extends Component {
             id="profileChild"
           />
           <label id="profileChild"> Address:</label>
-          <input type="text" name="address" id="profileChild" />
+          <input
+            type="text"
+            name="address"
+            id="profileChild"
+            value={`${profile.address}`}
+          />
           <input type="submit" value="Submit" id="profileChild" />
         </form>
       </div>
