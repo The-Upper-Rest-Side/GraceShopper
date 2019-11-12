@@ -34,7 +34,7 @@ router.get('/cart', async (req, res, next) => {
         quantity: element.dataValues.quantity
       })
     }
-    res.status(200).json(cartClothes[0])
+    res.status(200).json(cartClothes)
   } catch (error) {
     next(error)
   }
@@ -66,8 +66,6 @@ router.get('/transactions', async (req, res, next) => {
 })
 router.put('/me', async (req, res, next) => {
   try {
-    console.log('In user route >>>>>>>>')
-
     const userId = req.session.passport.user
     await User.update(req.body, {where: {id: userId}})
 

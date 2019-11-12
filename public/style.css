@@ -42,7 +42,7 @@ form div {
   flex-direction: row;
 }
 
-.cartContainer {
+.row {
   display: flex;
   justify-content: space-between;
 }
