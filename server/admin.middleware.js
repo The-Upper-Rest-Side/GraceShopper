@@ -3,7 +3,6 @@ const db = require('./db')
 const isAdminMiddleware = async (req, res, next) => {
   const userId = req.session.passport.user
   const user = await db.models.user.findOne({where: {id: userId}})
-  console.log(user)
   if (user.dataValues.isAdmin) {
     next()
   } else {

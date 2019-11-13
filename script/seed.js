@@ -53,6 +53,61 @@ async function seed() {
       inventory: 1000,
       imageUrl:
         'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSl7dvpPAyuyMtIS-PLWGBlkjv8mjthMpl0HLppEIUoh8mpUW4FzDqub44hHP_Mjmd-Fw1V90CTbd8KW3VByzfoV3ZtAyZHSEQGBD0oqef3&usqp=CAE'
+    }),
+    Clothes.create({
+      name: 'Shimmery Top',
+      category: 'Shirts',
+      price: 40.0,
+      size: 8,
+      inventory: 1000,
+      imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/711xvTCFZqL._UX679_.jpg'
+    }),
+    Clothes.create({
+      name: 'Yoga Pants',
+      category: 'Pants',
+      price: 35.0,
+      size: 10,
+      inventory: 1000,
+      imageUrl:
+        'https://media.kohlsimg.com/is/image/kohls/2094188?wid=1000&hei=1000&op_sharpen=1'
+    }),
+    Clothes.create({
+      name: 'Pencil Pants',
+      category: 'Pants',
+      price: 55.0,
+      size: 2,
+      inventory: 1000,
+      imageUrl:
+        'https://i2.wp.com/www.justpinkaboutit.com/wp-content/uploads/2018/07/New-Pink-Double-Striped-Pants-High-Waist-Pencil-pants-Women-stringyselvedge-summer-style-sexy-pants-female-3.jpg?fit=810%2C810&ssl=1'
+    }),
+    Clothes.create({
+      name: 'Jump Man Snapback',
+      category: 'hat',
+      price: 30.0,
+      size: 10,
+      inventory: 200,
+      imageUrl:
+        'https://images.footlocker.com/is/image/EBFL2/A2118010_a1?wid=640&hei=640&fmt=png-alpha'
+    }),
+    Clothes.create({
+      name: 'Knicks Snapback',
+      category: 'hat',
+      price: 20.0,
+      size: 10,
+      inventory: 100,
+      imageUrl:
+        'https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_2564000/altimages/ff_2564209alt1_full.jpg&w=325'
+    }),
+
+    Clothes.create({
+      name: 'Nets Snapback',
+      category: 'hat',
+      price: 30.0,
+      size: 10,
+      inventory: 100,
+      imageUrl:
+        'https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_1445000/altimages/FF_1445933ALT1_full.jpg&w=325'
     })
   ])
 

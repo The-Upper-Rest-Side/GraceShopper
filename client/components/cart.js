@@ -10,7 +10,7 @@ class CartView extends Component {
   }
 
   componentDidMount() {
-    this.props.user !== 'guest' ? this.props.getCart() : this.props.guestCart()
+    this.props.getCart()
   }
   calculateBalance() {
     return this.props.cart.reduce((accum, current) => {
@@ -18,11 +18,9 @@ class CartView extends Component {
     }, 0)
   }
   render() {
-    console.log(this.props)
     let {cart} = this.props
     const {remove, checkout} = this.props
     let balance = this.calculateBalance()
-    console.log(this.props)
     if (cart.length) {
       return (
         <div>
@@ -57,10 +55,6 @@ function mapDispatchToProps(dispatch) {
   return {
     checkout: () => dispatch(checkout()),
     getCart: () => dispatch(getCart()),
-    guestCart() {
-      let cart = JSON.parse(window.localStorage.getItem('name'))
-      return cart.name
-    },
     remove: item => dispatch(removeItem(item))
   }
 }
