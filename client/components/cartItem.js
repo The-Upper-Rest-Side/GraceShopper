@@ -29,7 +29,6 @@ const Item = props => {
             user !== 'guest'
               ? () => {
                   remove(item)
-                  refreshPage()
                 }
               : () => {
                   removeGuestCart(item.id)
