@@ -14,21 +14,34 @@ class CartView extends Component {
       this.props.getCart()
     }
   }
+  calculateBalance() {
+    return this.props.cart.reduce((accum, current) => {
+      return accum + current.price * current.quantity
+    }, 0)
+  }
   render() {
-    let {cart, guestCart, remove, user} = this.props
-    console.log(this.props)
-    if (user !== 'guest') {
-      if (cart.length) {
-        return (
-          <div>
-            {cart.map(item => (
-              <Item item={item} key={item.id} remove={remove} user={user} />
-            ))}
+    let {cart, guestCart, remove, user, checkout} = this.props
+    if (user !== 'guest') { 
+    let balance = this.calculateBalance()
+    if (cart.length) {
+      return (
+        <div>
+          {cart.map((item, key) => (
+            <Item item={item} key={item.id} remove={remove} />
+          ))}
+          <div className="checkout">
+            Balance: ${balance}
+            <button
+              type="button"
+              onClick={() => {
+                checkout(cart)
+              }}
+            >
+              Checkout
+            </button>
           </div>
-        )
-      } else {
-        return <div>Cart is empty</div>
-      }
+        </div>
+      )
     } else {
       const theGuestCart = guestCart()
       if (theGuestCart.length) {

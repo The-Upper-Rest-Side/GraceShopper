@@ -47,13 +47,20 @@ form div {
   justify-content: space-between;
 }
 
+.checkout {
+  display: flex;
+  justify-content: flex-end;
+
+  font-size: 50px;
+}
+
 img {
   width: 300px;
   height: 300px;
 }
 
 #navBar {
-  background-color: #4e4f54;
+  background-color: white;
 }
 
 h1 {
