@@ -110,8 +110,8 @@ router.delete('/:id/cart', async (req, res, next) => {
 //POST create an transaction/move cart to orders and clear cart
 router.post('/checkout', async (req, res, next) => {
   try {
-    const userId = 2
-    // const userId = req.session.passport.user
+    // const userId = 2
+    const userId = req.session.passport.user
     const transaction = await Transactions.create({userId})
     let amount = 0
     const cart = await Cart.findAll({
