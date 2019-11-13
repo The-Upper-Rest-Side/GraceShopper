@@ -18,8 +18,9 @@ class CartView extends Component {
     }, 0)
   }
   render() {
+    console.log(this.props)
     let {cart} = this.props
-    const {remove} = this.props
+    const {remove, checkout} = this.props
     let balance = this.calculateBalance()
     console.log(this.props)
     if (cart.length) {
@@ -28,7 +29,17 @@ class CartView extends Component {
           {cart.map((item, key) => (
             <Item item={item} key={item.id} remove={remove} />
           ))}
-          <h1>Balance: ${balance}</h1>
+          <div className="checkout">
+            Balance: ${balance}
+            <button
+              type="button"
+              onClick={() => {
+                checkout(cart)
+              }}
+            >
+              Checkout
+            </button>
+          </div>
         </div>
       )
     } else {
