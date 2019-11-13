@@ -7,11 +7,24 @@ class ClothingItem extends Component {
   constructor(props) {
     super(props)
   }
+
   componentDidMount() {
     this.props.getItem(this.props.match.params.id)
   }
 
+  addGuest() {
+    const {item} = this.props
+    if (!localStorage.getItem('cart')) {
+      localStorage.setItem('cart', JSON.stringify([item]))
+    } else {
+      let currentCart = JSON.parse(localStorage.getItem('cart'))
+      currentCart.push(item)
+      localStorage.setItem('cart', JSON.stringify(currentCart))
+    }
+  }
+
   render() {
+    const {email} = this.props
     return (
       <div id="clothesContainer">
         <img className="clothesImage" src={this.props.item.imageUrl} />
@@ -23,9 +36,7 @@ class ClothingItem extends Component {
             <button
               type="button"
               onClick={() => {
-                this.props.user !== 'guest'
-                  ? this.props.addItem(this.props.item)
-                  : this.props.addGuest()
+                email ? this.props.addItem(this.props.item) : this.addGuest()
               }}
             >
               Add to Cart
@@ -40,7 +51,8 @@ class ClothingItem extends Component {
 //needs an "add to cart" button
 function mapStateToProps(state) {
   return {
-    item: state.item
+    item: state.item,
+    email: state.user.email
   }
 }
 function mapDispatchToProps(dispatch) {
