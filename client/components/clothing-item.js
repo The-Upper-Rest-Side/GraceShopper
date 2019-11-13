@@ -46,19 +46,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getItem: itemId => dispatch(getItem(itemId)),
-    addItem: item => dispatch(addToCart(item)),
-    addGuest() {
-      if (!localStorage.getItem('cart')) {
-        localStorage.setItem(
-          'cart',
-          JSON.stringify([this.props.getItem(this.props.match.params.id)])
-        )
-      } else {
-        let currentCart = JSON.parse(localStorage.getItem('cart'))
-        currentCart.push(this.props.getItem(this.props.match.params.id))
-        localStorage.setItem('cart', JSON.stringify(currentCart))
-      }
-    }
+    addItem: item => dispatch(addToCart(item))
   }
 }
 
