@@ -50,7 +50,7 @@ async function seed() {
       category: 'Shirts',
       price: 30.0,
       size: 10,
-      inventory: 5,
+      inventory: 1000,
       imageUrl:
         'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSl7dvpPAyuyMtIS-PLWGBlkjv8mjthMpl0HLppEIUoh8mpUW4FzDqub44hHP_Mjmd-Fw1V90CTbd8KW3VByzfoV3ZtAyZHSEQGBD0oqef3&usqp=CAE'
     })

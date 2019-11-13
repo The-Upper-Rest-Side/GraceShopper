@@ -33,6 +33,7 @@ export function addToCart(item) {
     try {
       await axios.put(`/api/cart/${item.id}`)
       dispatch(addItem(item))
+      refreshPage()
     } catch (error) {
       dispatch(console.error(error))
     }
